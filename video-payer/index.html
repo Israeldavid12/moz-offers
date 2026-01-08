@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Personalizado como VTurb</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="video-container">
+        <video id="videoPlayer" preload="metadata" poster="poster.png" autoplay data-setup='{}'>
+            <source src="https://droopayfile.online/Captcha_Mola.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo HTML5.
+        </video>
+         
+        <!-- Controles Customizados (semelhante ao VTurb: minimalista) -->
+        <div class="custom-controls" id="customControls">
+            <!-- Botão Play/Pause -->
+            <button id="playPauseBtn" class="control-btn">▶</button>
+            
+            <!-- Barra de Progresso (como a "Smart Progress Bar" do VTurb) -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <!-- Volume -->
+            <button id="volumeBtn" class="control-btn"></button>
+            
+            <!-- Fullscreen (imersivo como no VTurb) -->
+            <button id="fullscreenBtn" class="control-btn"></button>
+            
+            <!-- Exemplo de CTA (call-to-action) como no VTurb -->
+            <button id="ctaBtn" class="cta-button" >Compre Agora!</button>
+        </div>
+        
+        <!-- Overlay para Mini-Hook (mensagem em drop-off, como VTurb) -->
+        <div id="miniHook" class="mini-hook">Não perca! Continue assistindo para ver o final...</div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

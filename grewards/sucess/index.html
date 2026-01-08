@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado! - Acesso Confirmado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .success-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            max-width: 600px;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .checkmark svg {
+            width: 50px;
+            height: 50px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .access-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 50px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .access-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .access-btn:active {
+            transform: translateY(0);
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: left;
+            color: #555;
+        }
+
+        .info-box strong {
+            color: #333;
+        }
+
+        .countdown {
+            color: #764ba2;
+            font-weight: 600;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="checkmark">
+            <svg viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="25" fill="none"/>
+                <path d="M14.1 27.2l7.1 7.2 16.7-16.8" fill="none"/>
+            </svg>
+        </div>
+
+        <h1>🎉 Obrigado!</h1>
+        <p class="subtitle">
+            Sua compra foi confirmada com sucesso! <br>
+            Clique no botão abaixo para acessar seu conteúdo exclusivo.
+        </p>
+
+        <a href="https://drive.google.com/drive/u/0/folders/18S45y-DqhSd2PbnkOcGvoAkK2sss_s_k" 
+           target="_blank" 
+           class="access-btn">
+            📂 ACESSAR MEU CONTEÚDO
+        </a>
+
+        <div class="info-box">
+            <p>
+                <strong>✓ Acesso Vitalício:</strong> Você terá acesso permanente a todos os arquivos.
+            </p>
+            <p style="margin-top: 12px;">
+                <strong>✓ Suporte 24/7:</strong> Caso tenha dúvidas, entre em contato conosco.
+            </p>
+            <p style="margin-top: 12px;">
+                <strong>✓ Garantia:</strong> Se não ficar satisfeito, devolvemos seu dinheiro em 7 dias.
+            </p>
+        </div>
+
+        <p class="countdown">
+            ⏱️ Seu link de acesso está ativo por 30 dias
+        </p>
+    </div>
+
+    <script>
+        // Animação do checkmark
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = document.querySelector('.checkmark svg path');
+            const length = path.getTotalLength();
+            
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+            
+            setTimeout(() => {
+                path.style.transition = 'stroke-dashoffset 0.6s ease-out';
+                path.style.strokeDashoffset = 0;
+            }, 300);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Exclusivo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Simulação de Meta Pixel (substituir depois pelo código oficial do pixel)
+    function fbq(event, action, params = {}) {
+      console.log("FBQ:", event, action, params);
+    }
+  </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="bg-white rounded-2xl shadow-lg w-full max-w-lg p-6">
+    
+    <!-- Barra de Progresso -->
+    <div class="w-full bg-gray-200 rounded-full h-2 mb-6">
+      <div id="progressBar" class="bg-green-500 h-2 rounded-full" style="width: 0%"></div>
+    </div>
+
+    <!-- Perguntas -->
+    <div id="quiz">
+      
+      <!-- Etapa 1 -->
+      <div id="step1">
+        <h2 class="text-xl font-bold mb-4">Você gostaria de ganhar uma renda extra usando apenas o celular?</h2>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl mb-3">Sim</button>
+        <button onclick="nextStep()" class="w-full bg-gray-300 p-3 rounded-xl">Não</button>
+      </div>
+
+      <!-- Etapa 2 -->
+      <div id="step2" class="hidden">
+        <h2 class="text-xl font-bold mb-4">Quantas horas por dia você usa o celular?</h2>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl mb-3">1 a 2 horas</button>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl mb-3">3 a 5 horas</button>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl">Mais de 6 horas</button>
+      </div>
+
+      <!-- Etapa 3 -->
+      <div id="step3" class="hidden">
+        <h2 class="text-xl font-bold mb-4">Você gostaria de ter uma fonte de renda sem depender de patrão?</h2>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl mb-3">Sim, com certeza</button>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl">Talvez</button>
+      </div>
+
+      <!-- Etapa 4 -->
+      <div id="step4" class="hidden">
+        <h2 class="text-xl font-bold mb-4">Você já tentou outras formas de ganhar dinheiro online?</h2>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl mb-3">Sim</button>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl">Não</button>
+      </div>
+
+      <!-- Etapa 5 -->
+      <div id="step5" class="hidden">
+        <h2 class="text-xl font-bold mb-4">Se tiver acesso ao método hoje, você começaria ainda esta semana?</h2>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl mb-3">Sim, hoje mesmo</button>
+        <button onclick="nextStep()" class="w-full bg-green-500 text-white p-3 rounded-xl">Talvez em alguns dias</button>
+      </div>
+
+      <!-- Resultado Final -->
+      <div id="step6" class="hidden text-center">
+        <h2 class="text-2xl font-bold mb-4">🎉 Parabéns!</h2>
+        <p class="mb-6">Baseado nas suas respostas, você foi <strong>selecionado</strong> para conhecer o novo sistema de recompensas pelo celular.</p>
+        <button onclick="finishQuiz()" class="w-full bg-blue-600 text-white p-3 rounded-xl">👉 Assistir ao vídeo agora</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 6;
+
+    fbq('track', 'PageView'); // Evento inicial
+
+    function nextStep() {
+      document.getElementById(`step${currentStep}`).classList.add('hidden');
+      currentStep++;
+      document.getElementById(`step${currentStep}`).classList.remove('hidden');
+
+      // Atualizar progresso
+      let progress = (currentStep / totalSteps) * 100;
+      document.getElementById("progressBar").style.width = progress + "%";
+
+      // Enviar evento Pixel para cada passo
+      fbq('trackCustom', 'QuizStep', { step: currentStep });
+    }
+
+    function finishQuiz() {
+      fbq('trackCustom', 'QuizCompleted');
+      fbq('track', 'ViewContent', { content_name: 'VideoQuiz' });
+      window.location.href = "./fb-page.html"; // link final
+    }
+  </script>
+</body>
+</html>

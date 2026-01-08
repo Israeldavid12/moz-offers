@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator hack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
+
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
+    body {
+        font-family: "Sora", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        background-color: #000;
+        color: #fff;
+    }
+
+    .custom-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 6px;
+        background: #d63384;
+        /* cor da barra (rosa no print) */
+        width: 0%;
+        transition: width 0.2s linear;
+    }
+
+    .video-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 640px;
+    }
+
+    /* Remove os controles nativos do Video.js */
+    .vjs-control-bar {
+        display: none !important;
+    }
+
+    .vjs-big-play-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ff4500 !important;
+        /* cor do botão */
+        border-radius: 50% !important;
+        /* deixa redondo */
+        width: 80px !important;
+        /* largura */
+        height: 80px !important;
+        /* altura */
+        font-size: 36px !important;
+        /* tamanho do ícone */
+        top: 50% !important;
+        left: 50% !important;
+
+        /* centraliza horizontalmente */
+        box-shadow: 0 4px 10px rgba(252, 248, 248, 0.4);
+        transition: transform 0.2s;
+    }
+
+    .vjs-big-play-button:hover {
+        transform: scale(1.2);
+        /* animação ao passar mouse */
+    }
+
+    /* Ícone de play */
+    .vjs-big-play-button .vjs-icon-placeholder::before {
+        content: 'PLAY';
+        /* pode colocar outro ícone se quiser */
+        font-size: 36px;
+        color: white;
+    }
+</style>
+
+<body>
+    <div>
+        <p class="font-[600] sm:text-2xl text-lg  text-center mt-10">
+            COMO ESTE <span class="underline">APLICATIVO</span> CONSEGUIU REVERTER TODAS AS MINHAS <br>
+            PERDAS NO <span class="text-[#FF0000]">AVIATOR</span> E ME AJUDAR A GANHAR <span
+                class="text-green-400">10.000 MT</span> EM 2 DUAS HORAS
+        </p>
+        <p class="text-center text-[17px] mt-4 underline">Sem gastar nada, e sem pagar bots que nao funcionam</p>
+
+        <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+
+        <div class="flex justify-center items-center w-full bg-black">
+            <video id="my-video" class="video-js vjs-big-play-centered "  preload="auto" width="640" height="360"
+                data-setup='{}'>
+                <source
+                    src="https://droopayfile.online/Captcha_Mola.mp4"
+                    type="video/mp4" />
+            </video>
+        </div>
+
+
+
+
+
+    </div>
+    <div class="bg-black flex justify-center items-center p-3 w-full top-0">
+        <!-- <p class="text-center">Aviator hack - Todos direitos reservados</p> -->
+        <img class="w-30" src="https://lippevelasrosas.online/wp-content/uploads/2025/05/18_.webp" alt="">
+    </div>
+</body>
+
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+<script>
+    const player = videojs('my-video');
+    const progressBar = document.getElementById("progress-bar");
+
+    player.on("timeupdate", function () {
+        const current = player.currentTime();
+        const duration = player.duration();
+        const percent = (current / duration) * 100;
+        progressBar.style.width = percent + "%";
+    });
+
+    player.on('timeupdate', function () {
+        var progress = (player.currentTime() / player.duration()) * 100;
+        console.log("Progresso do vídeo: " + progress.toFixed(2) + "%");
+    });
+</script>
+
+</html>

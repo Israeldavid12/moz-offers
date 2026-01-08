@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Quiz YouTube Rewards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            font-family: sans-serif;
+            background: #f0f0f5;
+            /* display: flex;
+      justify-content: center;
+      padding: 40px; */
+        }
+
+        .quiz {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 360px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .quiz img {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 8px 0;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background: #cc0000;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .start-btn {
+            background: #0073e6;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="flex shadow-md w-full justify-between items-center p-3 bg-white">
+        <p class="p-3 bg-red-600 font-bold text-white rounded-full">MT 12500</p>
+        <img src="/images (5).png" alt="lg" class="w-[150px]">
+    </header>
+
+    <div
+        class="mt-10 rounded-lg shadow-lg p-7 bg-white max-w-[400px] flex flex-col gap-5 justify-self-center justify-center items-center text-center text-lg ">
+        <!-- Tela inicial -->
+        <div class="step flex flex-col gap-3" id="step0">
+            <p class="font-bold text-4xl">🎁 Parabéns! 🎁</p>
+            <p>Você foi selecionado para o novo sistema de recompensas do YouTube.</p>
+            <h2>Você ganhou MZN 1000!</h2>
+            <p>Responda a este pequeno quiz para fazer seu primeiro levantamento!</p>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Clique aqui para
+                começar</button>
+        </div>
+
+        <!-- Perguntas -->
+        <div class="step hidden grid gap-3" id="step1">
+            <p>Pergunta 1 de 5</p>
+            <div class="question">Você conhece ou já ouviu falar do YouTube?</div>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Sim</button>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Não</button>
+        </div>
+
+        <div class="step hidden grid gap-3" id="step2">
+            <p>Pergunta 2 de 5</p>
+            <div class="question">Você já tem o YouTube instalado no seu Telefone?</div>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Sim</button>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Não</button>
+        </div>
+
+        <div class="step hidden grid gap-3" id="step3">
+            <p>Pergunta 3 de 5</p>
+            <div class="question">Em que horário você costuma assistir vídeos no Telefone?</div>
+            <button onclick="nextStep()">De Manhã</button>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Sim</button>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Não</button>
+        </div>
+
+        <div class="step hidden grid gap-3" id="step4">
+            <p>Pergunta 4 de 5</p>
+            <div class="question">Qual é a sua operadora de telefone que você mais usa?</div>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Vodacom</button>
+            <button class="bg-orange-500 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Movitel</button>
+            <button class="bg-yellow-500 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Tmcel</button>
+        </div>
+
+        <div class="step hidden grid gap-3" id="step5">
+            <p>Pergunta 5 de 5</p>
+            <div class="question">Você já assistiu algum vídeo no YouTube?</div>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Sim</button>
+            <button class="bg-red-600 p-3 rounded-full px-6 py-3 text-white" onclick="nextStep()">Não</button>
+        </div>
+
+        <!-- Resultado -->
+        <div class="step hidden grid gap-3" id="step6">
+            <h2>Parabéns!</h2>
+            <p>Para levantar para sua conta, assista a este vídeo.</p>
+            <button class="bg-green-600 text-white px-5 py-3 rounded-full " onclick="finish()">Quero levantar meu
+                dinheiro</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        function nextStep() {
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            currentStep++;
+            document.getElementById(`step${currentStep}`).classList.remove('hidden');
+        }
+        function finish() {
+
+            window.location.href = 'https://moz-offer.vercel.app/vsl.html';
+        }
+    </script>
+
+</body>
+
+</html>

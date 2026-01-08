@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    padding: 20px;
+
+}
+
+.video-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0px;
+    /* background-color: #000; */
+}
+
+#videoPlayer {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    /* Bordas arredondadas como no VTurb */
+}
+
+.custom-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    /* Gradiente sutil no fundo */
+    display: flex;
+    align-items: center;
+    padding: 100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.video-container:hover .custom-controls {
+    opacity: 1;
+    /* Controles aparecem no hover, como players minimalistas */
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    height: 100vh;
+    /* Ocupa a altura total da viewport, ajuste se necessário */
+    width: 100%;
+    /* Ocupa a largura total */
+    position: relative;
+    /* Para controle de posicionamento */
+}
+
+.control-btn {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 100px;
+    left: 100px;
+    right: 100px;
+    bottom: 100px;
+    border-radius: 30px;
+    outline: 5px solid white;
+    background: #705099ce;
+    color: white;
+    padding: 50px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-wit) {}
+
+/* .control-btn:hover {
+  background: #493464;
+} */
+
+.progress-container {
+    flex: 1;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    /* margin: 0 0px; */
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: default;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #705099;
+    /* Cor vermelha como no VTurb para progresso */
+    width: 0%;
+    transition: width 0.1s;
+    width: 15px;
+}
+
+.cta-button {
+    justify-self: center;
+    max-width: 300px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    background: #0cc215;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    display: none;
+    text-align: center;
+}
+
+.cta-button:hover {
+    background-color: #098d10;
+}
+
+.mini-hook {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 100px;
+    border-radius: 5px;
+    display: none;
+}
+
+/* Responsivo para mobile */
+@media (max-width: 600px) {
+    .custom-controls {
+        padding: 5px;
+    }
+
+    .control-btn {
+        font-size: 13px;
+        top: 50px;
+        left: 50px;
+        right: 50px;
+        bottom: 50px;
+        outline: 2px solid white;
+    }
+}

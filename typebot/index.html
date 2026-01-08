@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeBot WhatsApp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .typing {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #bbb;
+      border-radius: 50%;
+      animation: blink 1s infinite alternate;
+      margin: 0 2px;
+    }
+    .typing:nth-child(2) { animation-delay: 0.2s; }
+    .typing:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blink {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-gray-200 flex justify-center items-center min-h-screen">
+
+  <div class="bg-white shadow-xl rounded-xl w-full max-w-md flex flex-col h-[600px]">
+    
+    <!-- Header -->
+    <div class="bg-green-600 text-white p-4 rounded-t-xl flex items-center gap-3">
+      <div class="w-10 h-10 bg-white rounded-full"></div>
+      <div>
+        <p class="font-bold">Atendimento</p>
+        <p class="text-sm">online agora</p>
+      </div>
+    </div>
+
+    <!-- Chat Area -->
+    <div id="chat" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-100">
+      <!-- Mensagens aparecem aqui -->
+    </div>
+
+    <!-- Input -->
+    <div class="p-3 border-t bg-white">
+      <input id="userInput" type="text" placeholder="Digite sua resposta..."
+        class="w-full border rounded-full px-4 py-2 outline-none"/>
+    </div>
+  </div>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("userInput");
+
+    function addMessage(text, sender = "bot") {
+      const bubble = document.createElement("div");
+      bubble.className = sender === "bot"
+        ? "bg-green-500 text-white p-3 rounded-xl max-w-xs"
+        : "bg-gray-300 text-black p-3 rounded-xl max-w-xs self-end";
+      bubble.innerText = text;
+      chat.appendChild(bubble);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function addTyping() {
+      const typingDiv = document.createElement("div");
+      typingDiv.id = "typing";
+      typingDiv.className = "bg-green-200 p-2 rounded-xl inline-flex gap-1";
+      typingDiv.innerHTML = `<span class="typing"></span><span class="typing"></span><span class="typing"></span>`;
+      chat.appendChild(typingDiv);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function removeTyping() {
+      const typing = document.getElementById("typing");
+      if (typing) typing.remove();
+    }
+
+    // Fluxo de mensagens
+    function botMessage(text, delay = 1500) {
+      addTyping();
+      setTimeout(() => {
+        removeTyping();
+        addMessage(text, "bot");
+      }, delay);
+    }
+
+    // Início da conversa
+    botMessage("Olá 👋");
+    setTimeout(() => botMessage("Sou seu assistente virtual."), 2000);
+    setTimeout(() => botMessage("Você gostaria de saber como ganhar pelo celular? (sim/não)"), 4000);
+
+    // Captura do input
+    input.addEventListener("keypress", e => {
+      if (e.key === "Enter" && input.value.trim() !== "") {
+        addMessage(input.value, "user");
+        let response = input.value.toLowerCase();
+        input.value = "";
+
+        if (response.includes("sim")) {
+          botMessage("Perfeito ✅ Vou te mostrar um passo a passo...");
+        } else if (response.includes("não")) {
+          botMessage("Tudo bem, estarei aqui caso mude de ideia 😉");
+        } else {
+          botMessage("Não entendi 🤔 pode responder 'sim' ou 'não'?");
+        }
+      }
+    });
+  </script>
+</body>
+</html>

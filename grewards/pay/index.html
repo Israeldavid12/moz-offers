@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento com Droopay</title>
+    <!-- Inclui o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/grewards/pay/payments.css">
+</head>
+
+<body class="bg-gray-100 flex flex-col items-center justify-start min-h-screen">
+    <div class="bg-red-500 flex justify-center items-center mb-10 w-full h-15 text-white text-lg p-4">
+        <p>⚠️ Esta oferta expira em <span id="count-down">
+                04:14
+            </span>
+        </p>
+    </div>
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <div>
+            <p class="text-2xl font-bold  text-gray-800 ">Taxa do Google</p>
+            <p class="text-lg font-bold  mb-6 text-blue-500">197,00 MZN</p>
+        </div>
+
+        <form id="paymentForm" class="space-y-4">
+            <div>
+                <label for="fullName" class="block text-sm font-medium text-gray-700">Nome completo</label>
+                <input type="text" id="fullName" name="fullName" required
+                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
+                <input type="email" id="email" name="email" required
+                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+
+            <div>
+                <label for="whatsapp" class="block text-sm font-medium text-gray-700">Número de WhatsApp</label>
+                <input type="text" id="whatsapp" name="whatsapp" required
+                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+
+            <div>
+                <label for="paymentMethod" class="block text-sm font-medium text-black">Selecione um método de pagamento clicando por cima da imagem</label>
+                <div class="payment-options">
+                    <!-- Opção M-Pesa -->
+                    <label class="payment-card">
+                        <input type="radio" name="paymentMethod" value="mpesa" required hidden>
+                        <div class="card-content">
+                            <img src="/grewards/pay/mpesa.png" alt="M-Pesa" class="payment-logo">
+
+                        </div>
+                    </label>
+
+                    <!-- Opção E-Mola -->
+                    <label class="payment-card">
+                        <input type="radio" name="paymentMethod" value="emola" required hidden>
+                        <div class="card-content">
+                            <img src="/grewards/pay/emola (1).png" alt="E-Mola" class="payment-logo">
+
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <label for="paymentNumber" class="block text-sm font-medium text-black">Número de pagamento</label>
+                <input type="text" id="paymentNumber" name="paymentNumber" required
+                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="">
+            </div>
+
+            <button id="pay" type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                Finalizar compra 197,00 MZN
+            </button>
+        </form>
+    </div>
+
+    <!-- Inclui o Axios via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        async function genAcessToke() {
+            try {
+                const response = await axios.post("https://payment.droopay.com/api/oauth/token", {
+                    client_id: "c0f280e4-7e71-4711-ae4c-745dba742d17",
+                    client_secret: "pY2c_jToRW4GXpK7B8HXM",
+                });
+
+                console.log("Token de acesso gerado:", response.data.access_token);
+
+                return response.data.access_token;
+            } catch (error) {
+                console.error("Erro ao gerar token de acesso:", error);
+                return null;
+            }
+        }
+
+        document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+            radio.addEventListener("change", function () {
+                const numeroInput = document.getElementById('paymentNumber');
+
+                if (this.value === "mpesa") {
+                    numeroInput.placeholder = "84/85XXXXXXX ";
+                    numeroInput.setAttribute("pattern", "8[678][0-9]{7}"); // opcional: validação real
+                    numeroInput.setAttribute("title", "Número M-Pesa: começa com 84, 85,");
+                }
+                else if (this.value === "emola") {
+                    numeroInput.placeholder = "86/87XXXXXXX ";
+                    numeroInput.setAttribute("pattern", "8[678][0-9]{7}"); // mesmo formato em Moçambique
+                    numeroInput.setAttribute("title", "Número E-Mola: começa com 86 ou 87");
+                }
+            });
+        });
+
+        document.getElementById('paymentForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            console.log("x")
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            const paymentNumber = document.getElementById('paymentNumber').value;
+            const paymentButton = document.getElementById('pay')
+
+
+
+
+            // A URL pode precisar ser ajustada com base no método de pagamento selecionado
+            const apiUrl = paymentMethod === 'mpesa'
+                ? "https://payment.droopay.com/api/open/payment/mpesa/live"
+                : "https://payment.droopay.com/api/open/payment/v1/emola/live"; // URL hipotética para E-Mola
+
+
+
+            try {
+                paymentButton.disabled = true
+                paymentButton.style.opacity = "0.5";
+                paymentButton.textContent = "Processando pagamento"
+                const token = await genAcessToke();
+                const accessToken = `Bearer ${token}`; // Substitua pelo seu token de acesso
+                const response = await axios.post(apiUrl, {
+                    amount: 197, // Valor em centavos
+                    payment_number: paymentNumber,
+                    reference: 'ORDER-' + Math.floor(Math.random() * 1000),
+                    product_name: "Taxa do Google",
+                    buyer_name: fullName,
+                    buyer_email: email,
+                }, {
+                    headers: {
+                        Authorization: accessToken
+                    }
+                });
+
+                if (response.status === 201 || response.status === 200) {
+                    console.log("Transação criada com sucesso! ID da transação: " + response.data.transaction_ID)
+                    window.location.href = "https://moz-offer.vercel.app/grewards/upsel-1"
+                } else {
+                    console.log("Erro ao processar pagamento.")
+                }
+            } catch (error) {
+                console.error("Erro:", error);
+                
+            } finally {
+                paymentButton.disabled = fallse
+                paymentButton.style.opacity = "1";
+                paymentButton.textContent = "Finalizar compra 197,00 MZN"
+            }
+        });
+
+
+
+        let timer;
+        let totalSegundos = 4 * 60; // 4 minutos
+        const label = document.getElementById("count-down");
+
+        function atualizarDisplay() {
+            const minutos = Math.floor(totalSegundos / 60);
+            const segundos = totalSegundos % 60;
+            label.textContent =
+                `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+            if (totalSegundos <= 0) {
+                label.textContent = "00:00";
+                label.style.color = "#e74c3c";
+                clearInterval(timer);
+                // Som opcional quando acabar
+                const som = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3');
+                som.play();
+            }
+        }
+
+        function iniciar() {
+            clearInterval(timer); // evita múltiplos timers
+            timer = setInterval(() => {
+                totalSegundos--;
+                atualizarDisplay();
+            }, 1000);
+        }
+
+        function parar() {
+            clearInterval(timer);
+        }
+
+        function reiniciar() {
+            clearInterval(timer);
+            totalSegundos = 4 * 60;
+            label.style.color = "#e74c3c";
+            atualizarDisplay();
+            iniciar(); // reinicia automaticamente após reset
+        }
+
+        // INÍCIO AUTOMÁTICO ASSIM QUE A PÁGINA CARREGA
+        window.onload = function () {
+            atualizarDisplay();
+            iniciar();
+        };
+    </script>
+</body>
+
+</html>

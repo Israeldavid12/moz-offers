@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Quiz ChatGPT Rewards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            font-family: sans-serif;
+            background: #f0f0f5;
+            /* display: flex;
+      justify-content: center;
+      padding: 40px; */
+        }
+
+        .quiz {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 360px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .quiz img {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 8px 0;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background: #cc0000;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .start-btn {
+            background: #0073e6;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <header class="flex shadow-md w-full justify-between items-center p-3 bg-white">
+        <p class="p-3 bg-[#13AD87] font-bold text-white rounded-full">MT 12500</p>
+        <img src="../chat.png" alt="lg" class="w-[50px]">
+    </header>
+
+       <div class="mt-5 grid gap-10 bg-white p-5">
+        <h1 class="text-center text-2xl font-bold" >
+            Levantar premio
+        </h1>
+            <div class="ring-2 ring-[silver] hover:ring-green-600 rounded-lg  px-1.5 py-1 active:ring-green-600"" >
+                <p class=" text-[10px]">Seu nome * </p>
+                <input type="text" name="" id="buyer-name" class="outline-none">
+            </div>
+            <div class="ring-2 ring-[silver] hover:ring-green-600 rounded-lg  px-1.5 py-1 active:ring-green-600"" >
+                <p class=" text-[10px]">E-mail * </p>
+                <input type="text" name="" id="" class="outline-none">
+            </div>
+
+            <div class="ring-2 ring-[silver] hover:ring-green-600 rounded-lg  px-1.5 py-1 active:ring-green-600"" >
+                <p class=" text-[10px]">Telefone * </p>
+                <div class="flex">
+                    <p class="text-sm text-black/80">+258</p>
+                    <input class="text-sm text-black/80 outline-none" type="text" name="" id="">
+                </div>
+            </div>
+        </div>
+
+    <script>
+        let currentStep = 0;
+        const paramsString = window.location.search;
+        const parm_type = new URLSearchParams(paramsString).get("type")
+        console.log(parm_type)
+
+        function nextStep() {
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            currentStep++;
+            document.getElementById(`step${currentStep}`).classList.remove('hidden');
+        }
+        function finish() {
+            if (parm_type === "direct") {
+                window.location.href = "./levantar"
+            } else {
+                window.location.href = './';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

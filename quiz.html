@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Quiz YouTube Rewards</title>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <style>
+    body { font-family: sans-serif; background: #f0f0f5; display: flex; justify-content: center; padding: 40px; }
+    .quiz { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 360px; width: 100%; padding: 20px; text-align: center; }
+    .quiz img { max-width: 100%; margin-bottom: 20px; }
+    .question { font-size: 18px; margin-bottom: 20px; }
+    button { margin: 8px 0; padding: 12px; width: 100%; border: none; border-radius: 5px; background: #cc0000; color: white; font-size: 16px; cursor: pointer; }
+    .start-btn { background: #0073e6; }
+  </style>
+</head>
+<body>
+<div class="quiz" x-data="quizApp">
+  <template x-if="step === 0">
+    <div>
+      <h2>Você ganhou MZN 1000!</h2>
+      <p>Responda a este pequeno quiz para fazer seu primeiro levantamento!</p>
+      <button class="start-btn" @click="step = 1">Clique aqui para começar</button>
+    </div>
+  </template>
+
+  <template x-if="step > 0 && step <= questions.length">
+    <div>
+      <div class="question">
+        <img :src="questions[step - 1].image" alt="Pergunta">
+        <p>Pergunta <span x-text="step"></span> de <span x-text="questions.length"></span></p>
+        <p x-text="questions[step - 1].text"></p>
+      </div>
+      <template x-for="option in questions[step - 1].options" :key="option">
+        <button @click="next()">{{ option }}</button>
+      </template>
+    </div>
+  </template>
+
+  <template x-if="step === questions.length + 1">
+    <div>
+      <h2>Parabéns!</h2>
+      <p>Para levantar para sua conta, assista a este vídeo.</p>
+      <button @click="finish()">Quero levantar meu dinheiro</button>
+    </div>
+  </template>
+</div>
+
+<script>
+function quizApp() {
+  return {
+    step: 0,
+    questions: [
+      { text: "Você conhece ou já ouviu falar do YouTube?", options: ["Sim", "Não"], image: "" },
+      { text: "Você já tem o YouTube instalado no seu Telefone?", options: ["Sim", "Não"], image: "" },
+      { text: "Em que horário você costuma assistir vídeos no Telefone?", options: ["De Manhã", "À tarde", "Noite"], image: "" },
+      { text: "Qual é a sua operadora de telefone que você mais usa?", options: ["Vodacom", "Movitel", "Tmcel"], image: "" },
+      { text: "Você já assistiu algum vídeo no YouTube?", options: ["Sim", "Não"], image: "" }
+    ],
+    next() {
+      this.step++;
+    },
+    finish() {
+      alert("Aqui você pode redirecionar para o vídeo ou uma URL diferente.");
+      // Exemplo: window.location.href = 'https://seulinkdevideo.com';
+    }
+  }
+}
+</script>
+</body>
+</html>

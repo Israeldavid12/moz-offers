@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tele Prémio - Resgate Rápido</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .comment {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .live-dot {
+            background: red;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+    </style>
+    <script defer src="https://drop-payments.vercel.app/track-fb-cookies.js"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <img src="/telepremio/images/logoFooter (1).png" alt="Tele Premio Logo" class="h-10">
+            <div>
+                <h1 class="font-bold text-xl">TELE PRÉMIO</h1>
+                <p class="text-sm text-gray-500">Em parceria com a TV Sucesso</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="max-w-3xl mx-auto p-6">
+        <h2 class="text-2xl font-extrabold text-center mb-3">DESCUBRA O SEGREDO PARA RESGATAR SEUS PRÊMIOS RAPIDAMENTE
+        </h2>
+        <p class="text-center mb-6 text-gray-600">Método exclusivo revelado em vídeo: Como garantir que você receba 100%
+            dos seus prêmios do Tele Prémio sem complicações!</p>
+
+        <!-- Player real -->
+        <div class="rounded overflow-hidden">
+            <vturb-smartplayer id="vid-692619c47dcc51d40b2dee8c"
+                style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer>
+            <script
+                type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/2f929c26-7634-47c4-b2be-a14f9db74fbe/players/692619c47dcc51d40b2dee8c/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
+        </div>
+    </section>
+
+    <!-- Ao vivo + comentários (tu decide o conteúdo) -->
+    <section class="max-w-3xl mx-auto p-6 bg-white shadow rounded">
+        <div class="flex items-center justify-between mb-4">
+            <div><span class="live-dot"></span><b>AO VIVO</b></div>
+            <div class="text-sm text-gray-600">1.247 assistindo</div>
+        </div>
+        <div id="comments"></div>
+    </section>
+
+    <script>
+        // Tu coloca aqui o teu feed de comentários reais, JSON, ou qualquer lógica.
+        // Eu não vou encher com falso.
+    </script>
+    <div id="comments"></div>
+
+
+    <script>
+        const comentarios = [
+            { nome: "Amélia Nhacale", texto: "Gente, acabei de receber meu prêmio do Tele Prémio! 🎉 15.000 MT na conta! Não acreditava que era real, mas chegou certinho! Obrigada Tele Prémio! ❤️", tempo: "agora", reacoes: "❤️ 47" },
+            { nome: "Armando Sitoe", texto: "Esse vídeo salvou minha vida! Segui o passo a passo e em 24h 8.500 MT estava na minha conta! 🙏", tempo: "1 min", reacoes: "👍 32" },
+            { nome: "Graça Mondlane", texto: "Consegui resgatar 7.200 MT! Achei que era golpe, mas é tudo verdade! 💰", tempo: "2 min", reacoes: "❤️ 28" },
+            { nome: "Elias Mahumane", texto: "Recebi 22.000 MT semana passada! 🔥", tempo: "3 min", reacoes: "🔥 56" },
+            { nome: "Lurdes Tembe", texto: "Obrigada por compartilhar! Consegui 9.800 MT 🥰", tempo: "5 min", reacoes: "❤️ 41" },
+            { nome: "Samuel Machava", texto: "Eu tinha 45.000 MT parados e agora já está na minha conta! 💪", tempo: "7 min", reacoes: "💪 73" },
+            { nome: "Josina Macaringue", texto: "Consegui resgatar 12.500 MT! 🎊", tempo: "8 min", reacoes: "🎊 39" },
+            { nome: "Alberto Chibuto", texto: "Quase perdi meu prêmio, mas consegui 18.700 MT! 🙌", tempo: "10 min", reacoes: "🙌 52" },
+        ];
+
+        let i = 0;
+        function mostrarComentario() {
+            if (i < comentarios.length) {
+                const c = comentarios[i];
+                document.getElementById("comments").innerHTML += `
+          <div class="comment">
+            <p><b>${c.nome}</b></p>
+            <p>${c.texto}</p>
+            <p class="text-sm text-gray-500">${c.tempo} • ${c.reacoes}</p>
+          </div>`;
+                i++;
+                setTimeout(mostrarComentario, 3000);
+            }
+        }
+        mostrarComentario();
+    </script>
+
+
+
+</body>
+
+</html>

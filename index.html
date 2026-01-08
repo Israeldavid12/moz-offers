@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Cash</title>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white w-full">
+    <header class="flex shadow-md w-full justify-between items-center p-3 bg-white">
+        <p class="p-3 bg-red-600 font-bold text-white rounded-full">MT 12500</p>
+        <img src="/images (5).png" alt="lg" class="w-[150px]">
+    </header>
+
+    <section
+        class="mt-10 rounded-lg shadow-lg p-7 bg-white max-w-[400px] flex flex-col gap-3 justify-self-center justify-center items-center text-center text-lg ">
+
+
+        <template x-if="step === 0">
+            <div>
+                <p class="font-bold text-4xl">🎁 Parabéns! 🎁</p>
+                <p>Você foi selecionado para o novo sistema de recompensas do YouTube.</p>
+                <p>Você já ganhou MZN 1000!</p>
+                <p>Responda a este pequeno quiz para fazer seu primeiro levantamento!</p>
+                <button class="start-btn" @click="step = 1">Clique aqui para começar</button>
+            </div>
+        </template>
+
+
+        <template x-if="step > 0 && step <= questions.length">
+            <div>
+                <div class="question">
+                    <img :src="questions[step - 1].image" alt="Pergunta">
+                    <p>Pergunta <span x-text="step"></span> de <span x-text="questions.length"></span></p>
+                    <p x-text="questions[step - 1].text"></p>
+                </div>
+                <template x-for="option in questions[step - 1].options" :key="option">
+                    <button @click="next()">{{ option }}</button>
+                </template>
+            </div>
+        </template>
+
+        <template x-if="step === questions.length + 1">
+            <div>
+                <h2>Parabéns!</h2>
+                <p>Para levantar para sua conta, assista a este vídeo.</p>
+                <button @click="finish()">Quero levantar meu dinheiro</button>
+            </div>
+        </template>
+
+    </section>
+</body>
+
+<script>
+    function quizApp() {
+        return {
+            step: 0,
+            questions: [
+                { text: "Você conhece ou já ouviu falar do YouTube?", options: ["Sim", "Não"], image: "" },
+                { text: "Você já tem o YouTube instalado no seu Telefone?", options: ["Sim", "Não"], image: "" },
+                { text: "Em que horário você costuma assistir vídeos no Telefone?", options: ["De Manhã", "À tarde", "Noite"], image: "" },
+                { text: "Qual é a sua operadora de telefone que você mais usa?", options: ["Vodacom", "Movitel", "Tmcel"], image: "" },
+                { text: "Você já assistiu algum vídeo no YouTube?", options: ["Sim", "Não"], image: "" }
+            ],
+            next() {
+                this.step++;
+            },
+            finish() {
+                alert("Aqui você pode redirecionar para o vídeo ou uma URL diferente.");
+                window.location.href = 'https://seulinkdevideo.com';
+            }
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECTO ZERO BARRIGA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://vjs.zencdn.net/8.13.1/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.13.1/video.min.js"></script>
+    <link rel="stylesheet" href="../../video-payer/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
+        body {
+            font-family: "Sora", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            background-color: #ffffff;
+            color: #111111;
+        }
+    </style>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '3233922930116692');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=774832311596432&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+
+<body class="w-full p-3">
+    <div class="flex flex-col justify-center items-center gap-5">
+
+        <!-- <p class="sm:text-4xl text-2xl font-[600] pt-4 text-center"><span class="text-blue-400">C</span><span
+                style="color: red;" class="text-red-400">ap</span><span class="text-green-400">tchaMola</span></p> -->
+        <p class="font-bold text-2xl text-center">
+            SAIBA COMO ESTE <span style="color: green;" >MIX DE FRUTAS</span> PARA PERDER PESO CONSIGUIU DEVOLVER MINHA <span style="color: rgb(19, 18, 18);">AUTOESTIMA</span>
+        </p>
+
+        <p class="text-1xl mb-2 text-center">
+            Veja o video abaixo e aprende como fazer isso passo a passo &#x1F53D;
+        </p>
+
+        <!-- 
+        <vturb-smartplayer id="vid-68b13e5a6fe4730e99298c73" style="display: block; margin: 0 auto; width: 100%;">
+        </vturb-smartplayer> -->
+
+        <div class="video-container relative">
+            <video id="videoPlayer" preload="metadata" poster="../../video-payer/poster.png" autoplay data-setup='{}'>
+                <source src="https://droopayfile.online/zero-barriga-vsl.mp4" type="video/mp4">
+                Seu navegador não suporta vídeo HTML5.
+            </video>
+
+            <!-- Controles Customizados -->
+            <div class="custom-controls" id="customControls">
+                <!-- Botão Play/Pause -->
+                <button id="playPauseBtn" class="control-btn"></button>
+
+                <!-- Barra de Progresso -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+                <!-- BOTÃO DE VOLUME CENTRALIZADO -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <button id="volumeBtn" class="control-btn text-[20px] font-bold bg-green-700 rounded-full px-4 py-2 
+                       animate-pulse  transition-transform duration-300">
+                        🔊 Clique aqui para activar som 
+                    </button>
+                </div>
+
+                <!-- Fullscreen -->
+                <button id="fullscreenBtn" class="control-btn"></button>
+            </div>
+
+            <!-- Overlay Mini-Hook -->
+            <div id="miniHook" class="mini-hook">Não perca! Continue assistindo para ver o final...</div>
+        </div>
+
+
+        <div class="max-w-[967px] mt-10">
+            <div>
+                <button id="ctaBtn" class="cta-button">QUERO FAZER PARTE!</button>
+            </div>
+
+
+            <img class="max-w-300" src="https://droopayfile.online/APRESENTADO%20EM%20(2).png" alt="img">
+
+
+            <p class="text-[13px]" >Iniciar sessao para deixar comentario</p>
+
+          <!-- <div class="flex justify-center items-center gap-2 p-2">
+                <img class="w-10 h-10 rounded-full flex justify-self-start self-start"
+                    src="https://droopayfile.online/uploads/images/ae3ab8c9-4cc4-488a-be30-c491a4b46d31.webp" alt="">
+                <div>
+                    <p class="text-[#385898] font-bold text-sm">Nelson Chabane</p>
+                    <p class="text-sm">Bro, vi o vi­deo e fiquei tipo: impossi­vel! Já saquei 18.500 meticais so
+                        por
+                        resolver captchas! Esse Captcha Mola é real mesmo muito Obrigado maning!</p>
+                    <div class="flex gap-1 justify-start items-center">
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Curtir</p>
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Responder</p>
+                        <!-- <img class="w-[12px] h-[12px]  " src="../images//fb/fblike.webp" alt=""> 
+                        <p class="text-[12px]">12</p>
+                        <p class="text-[#90949c] text-[12px]">1 m</p>
+                    </div>
+                </div>
+            </div> -->
+
+            
+            <!-- <div class="flex justify-center items-center gap-2 p-2">
+                <img class="w-10 h-10 rounded-full flex justify-self-start self-start"
+                    src="https://droopayfile.online/uploads/images/451b9637-c681-4634-bd96-cb3783bebb78.webp" alt="">
+                <div>
+                    <p class="text-[#385898] font-bold text-sm">Carlos Nhantumbo</p>
+                    <p class="text-sm">Essa cena tá a render bué! Comecei há 3 dias e já saquei 7 mil no M-Pesa.
+                        Só
+                        resolver e sacar! Parece magia, mas é real. Tô a usar o dinheiro pra comprar material
+                        pra minha
+                        filha 💖</p>
+                    <div class="flex gap-1 justify-start items-center">
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Curtir</p>
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Responder</p>
+                        <img class="w-[12px] h-[12px]  " src="../images//fb/fblike.webp" alt="">
+                        <p class="text-[12px]">20</p>
+                        <p class="text-[#90949c] text-[12px]">3 m</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center gap-2 p-2">
+                <img class="w-10 h-10 rounded-full flex justify-self-start self-start"
+                    src="https://droopayfile.online/uploads/images/6f50e7bc-8a5e-4114-9836-682270fa3120.webp" alt="">
+                <div>
+                    <p class="text-[#385898] font-bold text-sm">
+                        Paulo Mondlane</p>
+                    <p class="text-sm">
+                        Moçambique inteiro devia conhecer isso! Esse truque do vídeo é ouro. Já tô com saldo na
+                        conta,
+                        pronto pra sacar. Valeu maning 🔥💸
+                    </p>
+                    <div class="flex gap-1 justify-start items-center">
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Curtir</p>
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Responder</p>
+                        <img class="w-[12px] h-[12px]  " src="../images//fb/fblike.webp" alt="">
+                        <p class="text-[12px]">14</p>
+                        <p class="text-[#90949c] text-[12px]">6 m</p>
+                    </div>
+                </div>
+            </div> -->
+            <div class="flex justify-center items-center gap-2 p-2">
+                <img class="w-10 h-10 rounded-full flex justify-self-start self-start"
+                    src="https://droopayfile.online/uploads/images/96a61729-447f-431a-b3ee-998204d475a9.webp" alt="">
+                <div>
+                    <p class="text-[#385898] font-bold text-sm">
+                        Sheila Ussene</p>
+                    <p class="text-sm">
+                       Tambem pensei que fosse mentira, entao entrei para o projecto, consigui perder mais 10 kilos em duas semanas, muito obrigada! 🤩🤩
+                    </p>
+                    <div class="flex gap-1 justify-start items-center">
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Curtir</p>
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Responder</p>
+                        <img class="w-[12px] h-[12px]  " src="../images//fb/fblike.webp" alt="">
+                        <p class="text-[12px]">7</p>
+                        <p class="text-[#90949c] text-[12px]">9 m</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center gap-2 p-2">
+                <img class="w-10 h-10 rounded-full flex justify-self-start self-start"
+                    src="https://droopayfile.online/uploads/images/91bdf691-02d4-4d84-bd4f-8d34e2ff7d25.webp" alt="">
+                <div>
+                    <p class="text-[#385898] font-bold text-sm">
+                        Edson Matola</p>
+                    <p class="text-sm">
+                        Quem ainda tá a duvidar é porque quer sofrer. Isso é um dos metodos mais eficaz para perder em de 2025!
+                        😂
+                    </p>
+                    <div class="flex gap-1 justify-start items-center">
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Curtir</p>
+                        <p class="text-[#4295DA] text-[12px] hover:underline">Responder</p>
+                        <img class="w-[12px] h-[12px]  " src="../images//fb/fblike.webp" alt="">
+                        <p class="text-[12px]">9</p>
+                        <p class="text-[#90949c] text-[12px]">12 m</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    // var s = document.createElement("script");
+    // s.src = "https://scripts.converteai.net/9d6db3b3-faa6-426d-b033-af1aad357310/players/68b13e5a6fe4730e99298c73/v4/player.js";
+    // s.async = true;
+    // document.head.appendChild(s);
+    // const player = videojs('my-video');
+</script>
+
+<script>
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Pega o fbclid da URL
+    const fbclid = getQueryParam("fbclid");
+    localStorage.setItem("fbclid_param", fbclid)
+
+    const ctaBtn_ = document.getElementById("ctaBtn")
+
+    ctaBtn_.addEventListener("click", () => {
+        let checkoutUrl = "https://checkout.droopay.com/120";
+        if (fbclid) {
+            checkoutUrl += `?fbclid=${fbclid}`;
+        }
+        window.location.href = checkoutUrl;
+    });
+
+</script>
+
+<script src="../../video-payer/script.js" data-value="704"></script>
+
+
+</html>

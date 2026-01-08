@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anamola</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Fundo com imagem e opacidade */
+        .bg-anamola {
+            position: relative;
+            min-height: 100vh;
+            background-color: #ffffff;
+            overflow: hidden;
+            display: grid;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            overflow: auto;
+            padding: 2rem;
+        }
+
+        .bg-anamola::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("/anamola/images/Venancio-Mondlane.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            /* MUDE AQUI: 0.1 a 1.0 */
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Efeito ao passar o mouse (opcional) */
+        /* .bg-anamola:hover::before {
+      opacity: 0.6;
+    } */
+
+        /* Centraliza o conteúdo */
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-anamola">
+    <img class="w-20 justify-self-center mb-4" src="/anamola/images/icon (37).png" alt="">
+    <div class="content ">
+
+        <div class="bg-white p-8 max-w-4xl mx-auto text-center">
+
+            <h1 class="text-4xl md:text-5xl font-bold text-green-600 mb-4">Anamola</h1>
+            <p class="font-bold text-gray-600 text-2xl">ASSISTA O VIDEO EXCLUSIVO PARA SER MEMBRO DO ANAMOLA.</p>
+        </div>
+        <div class="">
+            <vturb-smartplayer id="vid-69174bc198db0a5ed75f0605"
+                style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
+            <script
+                type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/9ac6f967-8723-4cc2-9b3b-0c9cca90811a/players/69174bc198db0a5ed75f0605/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
+        </div>
+        <div class="max-w-2xl mx-auto p-4 bg-white rounded-lg shadow-md mt-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-6">Comentários</h2>
+
+            <!-- Comentário 1 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm border border-gray-100">
+                <div class="flex items-start space-x-3">
+                    <img src="/anamola/images/502413978_3682334648725506_2832515499950562947_n.jpg" alt="Nina"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Nina Borge</h3>
+                            <span class="text-xs text-gray-500">· 15 min</span>
+                        </div>
+                        <p class="text-gray-700 text-sm mt-1">
+                            Fiz o pagamento pelo e-Mola e recebi a confirmação em menos de 1 minuto.
+                        </p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                            <button class="flex items-center space-x-1 hover:text-orange-600 transition">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                <span>42</span>
+                            </button>
+                            <button class="hover:text-blue-600 transition">Responder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 2 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm border border-gray-100">
+                <div class="flex items-start space-x-3">
+                    <img src="/anamola/images/118692439_2747980245461668_2719438691776526937_n.jpg" alt="Mandinho"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Mandinho Lapiao</h3>
+                            <span class="text-xs text-gray-500">· 1h</span>
+                        </div>
+                        <p class="text-gray-700 text-sm mt-1">
+                            Recomendo fortemente! Tudo legit e o suporte responde na hora.
+                        </p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                            <button class="flex items-center space-x-1 hover:text-orange-600 transition">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                <span>31</span>
+                            </button>
+                            <button class="hover:text-blue-600 transition">Responder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 3 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm border border-gray-100">
+                <div class="flex items-start space-x-3">
+                    <img src="/anamola/images/519665697_1112565957394785_5345269496433213174_n.jpg" alt="Leila"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Leila Abilio</h3>
+                            <span class="text-xs text-gray-500">· 2h</span>
+                        </div>
+                        <p class="text-gray-700 text-sm mt-1">
+                            Assisti ao vídeo e logo depois virei membro — muito obrigada!
+                        </p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                            <button class="flex items-center space-x-1 hover:text-orange-600 transition">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                <span>28</span>
+                            </button>
+                            <button class="hover:text-blue-600 transition">Responder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 4 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm border border-gray-100">
+                <div class="flex items-start space-x-3">
+                    <img src="/anamola/images/297621922_502798171651412_4178714154109619028_n.jpg" alt="Carlos"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Carlos Mondlane</h3>
+                            <span class="text-xs text-gray-500">· 3h</span>
+                        </div>
+                        <p class="text-gray-700 text-sm mt-1">
+                            Confesso que duvidei no início, mas agora já sou membro oficial.
+                        </p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                            <button class="flex items-center space-x-1 hover:text-red-600 transition">
+                                <i class="fa-solid fa-heart text-red-500"></i>
+                                <span>18</span>
+                            </button>
+                            <button class="hover:text-blue-600 transition">Responder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 5 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm border border-gray-100">
+                <div class="flex items-start space-x-3">
+                    <img src="/anamola/images/557596156_122099179437049691_200510198858470635_n.jpg" alt="Anabela"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Anabela Tomás</h3>
+                            <span class="text-xs text-gray-500">· 8h</span>
+                        </div>
+                        <p class="text-gray-700 text-sm mt-1">
+                            O vídeo explica tudo, super simples! Fiz pelo M-Pesa e funcionou perfeitamente.
+                        </p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                            <button class="flex items-center space-x-1 hover:text-orange-600 transition">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                <span>22</span>
+                            </button>
+                            <button class="hover:text-blue-600 transition">Responder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 6 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm border border-gray-100">
+                <div class="flex items-start space-x-3">
+                    <img src="/anamola/images/533531120_4375927302639317_6827215443933993718_n.jpg" alt="Samuel"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Samuel Langa</h3>
+                            <span class="text-xs text-gray-500">· 1 dia</span>
+                        </div>
+                        <p class="text-gray-700 text-sm mt-1">
+                            Valeu ANAMOLA! Agora faço parte da comunidade, estou muito feliz.
+                        </p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                            <button class="flex items-center space-x-1 hover:text-red-600 transition">
+                                <i class="fa-solid fa-heart text-red-500"></i>
+                                <span>30</span>
+                            </button>
+                            <button class="hover:text-blue-600 transition">Responder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 7 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm border border-gray-100">
+                <div class="flex items-start space-x-3">
+                    <img src="/anamola/images/518335181_122178805562369960_3325027333334247320_n.jpg" alt="Ângelo"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Ângelo Mussa</h3>
+                            <span class="text-xs text-gray-500">· 1 dia</span>
+                        </div>
+                        <p class="text-gray-700 text-sm mt-1">
+                            Recebi o comprovativo automático, o sistema é inteligente mesmo.
+                        </p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                            <button class="flex items-center space-x-1 hover:text-orange-600 transition">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                <span>41</span>
+                            </button>
+                            <button class="hover:text-blue-600 transition">Responder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentário 8 -->
+            <div class="bg-white rounded-lg p-4 mb-4 shadow-sm border border-gray-100">
+                <div class="flex items-start space-x-3">
+                    <img src="/anamola/images/502413978_3682334648725506_2832515499950562947_n.jpg" alt="Ellen"
+                        class="w-10 h-10 rounded-full object-cover">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-semibold text-gray-900">Ellen Chongo</h3>
+                            <span class="text-xs text-gray-500">· 2 dias</span>
+                        </div>
+                        <p class="text-gray-700 text-sm mt-1">
+                            Participei ontem e já fui aprovada hoje. Obrigada equipe ANAMOLA!
+                        </p>
+                        <div class="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                            <button class="flex items-center space-x-1 hover:text-red-600 transition">
+                                <i class="fa-solid fa-heart text-red-500"></i>
+                                <span>50</span>
+                            </button>
+                            <button class="hover:text-blue-600 transition">Responder</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <footer class="text-center text-sm text-gray-500 mt-6">
+                © 2025 ANAMOLA · Todos os direitos reservados
+            </footer>
+        </div>
+
+
+
+
+
+</body>
+
+</html>
