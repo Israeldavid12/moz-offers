@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Seguro - Grupo Vipo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-md w-full bg-white   overflow-hidden ">
+
+        <div class="bg-[#cc1d1d] text-white p-3 flex items-center justify-center gap-4">
+            <div class="flex items-center gap-2">
+                <span id="timer" class="text-2xl font-black tracking-tighter">15:00</span>
+            </div>
+            <p class="text-[10px] leading-tight font-bold uppercase">
+                Garanta o preenchimento<br>dos seus dados dentro do tempo disponível.
+            </p>
+        </div>
+
+        <div class="p-4 flex flex-col items-center border-b border-gray-50/50">
+            <!-- <div class="flex items-center gap-6 mb-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/M-Pesa.png" alt="M-Pesa" class="h-7 object-contain">
+                <img src="https://www.movitel.co.mz/images/emola_logo.png" alt="e-Mola" class="h-7 object-contain">
+                <div class="h-6 w-px bg-gray-300"></div>
+                <div class="flex items-center gap-1 text-[10px] font-bold text-gray-400">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/></svg>
+                    SECURE
+                </div>
+            </div>
+            <h2 class="text-xl font-black text-gray-800 uppercase tracking-tight">Preencha os dados abaixo</h2>
+            <div class="flex gap-20 mt-1">
+                <span class="text-green-500 text-2xl animate-bounce">↓</span>
+                <span class="text-green-500 text-2xl animate-bounce">↓</span>
+            </div> -->
+            <img src="/transforma/upsell1/banner.png" alt="">
+        </div>
+
+        <div class="p-6">
+            <div class="mb-6">
+                <p class="text-gray-400 text-xs">Está a pagar:</p>
+                <h3 class="text-xl font-black text-gray-900 leading-tight">COMUNIDADE + GRUPO VIP VITALICIO</h3>
+                <p class="text-gray-500 text-sm italic">Cura da Impotência Masculina</p>
+                <p class="text-green-600 font-bold text-[10px] mt-1 uppercase flex items-center gap-1">
+                    Compra 100% segura <span class="text-xs">🛡️</span>
+                </p>
+                <div class="mt-2 flex items-baseline gap-2">
+                    <span class="text-3xl font-black text-[#cc1d1d]">500.00 MT</span>
+                </div>
+                <p class="text-gray-400 text-[10px]">Author: Dr. João Silva</p>
+            </div>
+
+            <form id="paymentForm" class="space-y-4">
+                <div>
+                    <label class="text-sm font-bold text-gray-700 uppercase text-[11px]">Seu nome *</label>
+                    <input type="text" id="buyer_name" required placeholder="Insira seu nome"
+                        class="w-full mt-1 border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gray-400 outline-none transition-all bg-gray-50/50">
+                </div>
+
+                <div>
+                    <label class="text-sm font-bold text-gray-700 uppercase text-[11px]">E-mail *</label>
+                    <input type="email" id="buyer_email" required placeholder="Insira seu e-mail"
+                        class="w-full mt-1 border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-gray-400 outline-none transition-all bg-gray-50/50">
+                </div>
+
+                <div class="pt-2">
+                    <p class="text-[11px] font-bold text-gray-500 mb-2 uppercase">Selecione um método de pagamento</p>
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <button type="button" onclick="setMethod('emola')" id="btn-emola"
+                            class="bg-[#f98d11] text-white font-bold py-3 rounded-xl border-2 border-[#f98d11] transition-all shadow-sm">
+                            e-Mola
+                        </button>
+                        <button type="button" onclick="setMethod('mpesa')" id="btn-mpesa"
+                            class="bg-white text-[#cc1d1d] font-bold py-3 rounded-xl border-2 border-[#cc1d1d] transition-all hover:bg-red-50">
+                            M-Pesa
+                        </button>
+                    </div>
+                </div>
+
+                <div id="phone-container">
+                    <label id="phone-label" class="text-sm font-bold text-gray-700 uppercase text-[11px]">Número e-Mola
+                        *</label>
+                    <div
+                        class="flex mt-1 border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-orange-500 transition-all">
+                        <span class="bg-gray-100 px-4 py-3 text-gray-500 border-r border-gray-200 font-bold text-sm">
+                            +258
+                        </span>
+                        <input type="tel" id="phone-input" required placeholder="86XXXXXXX ou 87XXXXXXX" maxlength="9"
+                            class="w-full p-3 text-sm outline-none bg-white">
+                    </div>
+                </div>
+
+                <button type="submit" id="action-btn"
+                    class="w-full bg-[#f98d11] text-white font-black py-4 rounded-xl mt-4 transition-all shadow-lg shadow-orange-200 uppercase tracking-widest hover:brightness-110 active:scale-[0.98] disabled:opacity-50">
+                    Pagar com e-Mola
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentMethod = 'emola';
+
+        // Lógica de alternância de métodos
+        function setMethod(method) {
+            currentMethod = method;
+            const btnEmola = document.getElementById('btn-emola');
+            const btnMpesa = document.getElementById('btn-mpesa');
+            const label = document.getElementById('phone-label');
+            const input = document.getElementById('phone-input');
+            const actionBtn = document.getElementById('action-btn');
+            const container = input.parentElement;
+
+            if (method === 'emola') {
+                btnEmola.className = "bg-[#f98d11] text-white font-bold py-3 rounded-xl border-2 border-[#f98d11] transition-all shadow-sm";
+                btnMpesa.className = "bg-white text-[#cc1d1d] font-bold py-3 rounded-xl border-2 border-[#cc1d1d] transition-all hover:bg-red-50";
+                label.innerText = "Número e-Mola *";
+                input.placeholder = "86XXXXXXX ou 87XXXXXXX";
+                actionBtn.innerText = "Pagar com e-Mola";
+                actionBtn.style.backgroundColor = "#f98d11";
+                actionBtn.classList.replace('shadow-red-200', 'shadow-orange-200');
+                container.classList.replace('focus-within:ring-red-600', 'focus-within:ring-orange-500');
+            } else {
+                btnMpesa.className = "bg-[#cc1d1d] text-white font-bold py-3 rounded-xl border-2 border-[#cc1d1d] transition-all shadow-sm";
+                btnEmola.className = "bg-white text-[#f98d11] font-bold py-3 rounded-xl border-2 border-[#f98d11] transition-all hover:bg-orange-50";
+                label.innerText = "Número M-Pesa *";
+                input.placeholder = "84XXXXXXX ou 85XXXXXXX";
+                actionBtn.innerText = "Pagar com M-Pesa";
+                actionBtn.style.backgroundColor = "#cc1d1d";
+                actionBtn.classList.replace('shadow-orange-200', 'shadow-red-200');
+                container.classList.add('focus-within:ring-red-600');
+            }
+        }
+
+        // Timer simples de 15 minutos
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            setInterval(() => {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds;
+                if (--timer < 0) timer = duration;
+            }, 1000);
+        }
+
+        window.onload = function () {
+            startTimer(60 * 15, document.querySelector('#timer'));
+        };
+
+        // Lógica de Envio (Integração Droopay)
+        document.getElementById('paymentForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('action-btn');
+            const originalText = submitBtn.innerText;
+
+
+
+            const apiurl = currentMethod === 'mpesa' ? 'https://payment.droopay.com/api/open/payment/mpesa/live' : 'https://payment.droopay.com/api/open/payment/v1/emola/live';
+
+
+            // Dados para a API
+            const paymentData = {
+                amount: 247.00,
+                payment_number: "258" + document.getElementById('phone-input').value,
+                product_name: "Cura da Impotência Masculina",
+                buyer_name: document.getElementById('buyer_name').value,
+                reference: "VIPO-" + Math.floor(Math.random() * 1000000)
+            };
+
+            try {
+
+                submitBtn.disabled = true;
+                submitBtn.innerText = "PROCESSANDO...";
+               
+
+                const token_request = await axios.post('https://payment.droopay.com/api/oauth/token', {
+                    client_id: 'c0f280e4-7e71-4711-ae4c-745dba742d17',
+                    client_secret: 'pY2c_jToRW4GXpK7B8HXM',
+                })
+
+                const token = token_request.data.access_token;
+
+                const response = await axios.post(apiurl, {
+                    amount: 500,
+                    payment_number:  document.getElementById('phone-input').value,
+                    product_name:  "Cura da Impotência Masculina - COMUNIDADE + GRUPO VIP 100%",
+                    buyer_name: document.getElementById('buyer_name').value,
+                    buyer_email: document.getElementById('buyer_email').value,
+                    product_id: 218,
+                    reference: "VIPO-" + Math.floor(Math.random() * 1000000),
+             
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+
+                console.log(response)
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+              
+                window.location.href = 'https://chat.whatsapp.com/IKBCZAkq12LC80R4k5KkDb'
+                return
+
+            } catch (error) {
+                console.error("Erro ao processar pagamento:", error);
+                
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+                
+            }
+        });
+    </script>
+</body>
+
+</html>
