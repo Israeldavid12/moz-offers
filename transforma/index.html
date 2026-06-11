@@ -15,6 +15,8 @@
         type="text/javascript"> var s = document.createElement("script"); s.src = "https://vmax.droopay.com/src/player.js", s.async = !0, document.head.appendChild(s); </script> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://drop-payments.vercel.app/track-fb-cookies.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    
     <style>
         body {
             background-color: #ffffff;
@@ -29,6 +31,7 @@
 </head>
 
 <body class="flex flex-col items-center justify-center p-2 ">
+    <script>eruda.init();</script>
     <div>
         <img src="/transforma/assets/title.png" alt="">
     </div>
@@ -37,18 +40,16 @@
     </div> -->
 
     <div class="w-full h-full p-2 flex justify-center items-center mb-3">
-        <vmax-player id="10" 
-        video-info='{"video": {
+        <vmax-player id="10" video-info='{"video": {
         "id": "10",
         "user_id": "c0f280e4-7e71-4711-ae4c-745dba742d17",
         "titulo": "Sal_Nigeriano.mp4",
         "descricao": null,
-        "url_video": "https://droopayfile.online/uploads/videos/1781093535981/playlist.m3u8",
+        "url_video": "https://droopayfile.online/uploads/videos/1781182552487/playlist.m3u8",
         "duracao_segundos": 0,
         "created_at": "2026-06-10T10:28:18.977Z",
         "updated_at": "2026-06-10T10:28:18.977Z"
-    }}'
-            video-events='{ "events": [
+    }}' video-events='{ "events": [
         {
             "id": "8",
             "video_id": "10",
