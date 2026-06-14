@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Método Chama Oculta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/></noscript>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1024059546851950');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1024059546851950&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- Fim Meta Pixel -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #ffffff;
+      color: #1a1a1a;
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 60px;
+    }
+
+    .headline {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .headline .line-top {
+      display: block;
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(11px, 3vw, 14px);
+      font-weight: 700;
+      color: #e8506a;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .headline .line-main {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 7.5vw, 44px);
+      font-weight: 900;
+      line-height: 1.1;
+      color: #1a1a1a;
+      margin-bottom: 14px;
+    }
+    .headline .line-main em {
+      font-style: normal;
+      color: #e8506a;
+      position: relative;
+    }
+    .headline .line-sub {
+      display: block;
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(15px, 4vw, 20px);
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+    .headline .line-sub em {
+      font-style: normal;
+      color: #e8506a;
+    }
+    .headline .line-bottom {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(13px, 3.5vw, 16px);
+      font-weight: 700;
+      color: #fff;
+      background: #1a1a1a;
+      padding: 8px 18px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+    .headline .line-bottom em {
+      font-style: normal;
+      color: #e8506a;
+    }
+
+    .video-wrap {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .sound-tip {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .viewers {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #888;
+    }
+    .dot-live {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,.5); }
+      50%      { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+    .viewers strong { color: #e8506a; }
+
+    /* CTA */
+    #cta-block {
+      display: none;
+      width: 100%;
+      max-width: 480px;
+      margin-top: 28px;
+      text-align: center;
+    }
+    .cta-btn {
+      display: inline-block;
+      width: 100%;
+      max-width: 420px;
+      background: #16a34a;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: clamp(16px, 2.5vw, 20px);
+      padding: 20px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      touch-action: manipulation;
+      animation: ctaPulse 1.4s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(22,163,74,0.5);
+    }
+    @keyframes ctaPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(22,163,74,0.55); }
+      60%  { box-shadow: 0 0 0 14px rgba(22,163,74,0); }
+      100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+    }
+    .cta-secure {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    footer {
+      margin-top: 48px;
+      font-size: 11px;
+      color: #bbb;
+      text-align: center;
+      line-height: 1.8;
+    }
+    footer a { color: #ccc; text-decoration: underline; }
+
+    /* Urgência acima do vídeo */
+    .urgency-tip {
+      width: 100%;
+      max-width: 400px;
+      background: #fff8e1;
+      border-left: 4px solid #f59e0b;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #92400e;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    /* Depoimentos */
+    .testimonials {
+      width: 100%;
+      max-width: 480px;
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .testimonials h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .testimonial-card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .testimonial-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #e8506a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .testimonial-body { flex: 1; }
+    .testimonial-name {
+      font-weight: 700;
+      font-size: 13px;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+    .testimonial-stars {
+      color: #f59e0b;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+    .testimonial-text {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+    }
+    .testimonial-likes {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #999;
+    }
+
+    /* Garantia */
+    .guarantee {
+      width: 100%;
+      max-width: 480px;
+      margin-top: 28px;
+      background: #f0fdf4;
+      border: 2px solid #16a34a;
+      border-radius: 10px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .guarantee-icon { font-size: 32px; margin-bottom: 6px; }
+    .guarantee h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #15803d;
+      margin-bottom: 6px;
+    }
+    .guarantee p {
+      font-size: 13px;
+      color: #166534;
+      line-height: 1.5;
+    }
+
+    /* Barra de retenção */
+    #retention-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 999;
+      animation: slideUp 0.4s ease;
+    }
+    #retention-bar span { color: #f59e0b; }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="headline">
+    <span class="line-top">Atenção — mulheres em Moçambique</span>
+    <h1>
+      <span class="line-main">Conheça o método <em>silencioso</em> que reacende a paixão</span>
+      <span class="line-sub">do seu homem em apenas <em>7 dias</em> —</span>
+    </h1>
+    <span class="line-bottom">mesmo quando ele parece <em>distante e frio.</em></span>
+  </div>
+
+  <div class="urgency-tip">
+    ⚠️ Assiste até ao fim — os bónus e o método completo são revelados nos últimos minutos.
+  </div>
+
+  <!-- Vturb Player -->
+  <div class="video-wrap">
+    <vturb-smartplayer id="vid-6a2df957288d4335e810cd12" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/db796e39-c226-4339-8764-73c6089ff19b/players/6a2df957288d4335e810cd12/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+  </div>
+
+  <p class="sound-tip">🔊 Sem som? Toca no vídeo para activar o áudio.</p>
+
+  <div class="viewers">
+    <div class="dot-live"></div>
+    Assistindo agora: <strong id="viewerCount">1.240</strong> pessoas
+  </div>
+
+  <div id="cta-block">
+    <a href="https://checkout.escalepay.com/5787201" class="cta-btn" id="ctaBtn">
+      ✅ Quero meu relacionamento de volta →
+    </a>
+    <p class="cta-secure">🔒 Pagamento seguro &nbsp;•&nbsp; Acesso imediato &nbsp;•&nbsp; Garantia de 7 dias</p>
+  </div>
+
+  <!-- Depoimentos -->
+  <div class="testimonials">
+    <h3>O que outras mulheres dizem:</h3>
+
+    <div class="testimonial-card">
+      <div class="testimonial-avatar" style="background:#e8506a;">A</div>
+      <div class="testimonial-body">
+        <div class="testimonial-name">Ana Paula Machava</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">Não acreditava que fosse funcionar mas em menos de uma semana o meu marido voltou a ser carinhoso como antes. Valeu cada centavo.</div>
+        <div class="testimonial-likes">👍 47 &nbsp;•&nbsp; 3 respostas</div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-avatar" style="background:#7c3aed;">F</div>
+      <div class="testimonial-body">
+        <div class="testimonial-name">Fátima Cossa</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">Estava prestes a desistir. Apliquei e ele voltou a me olhar diferente 😭❤️ Recomendo!</div>
+        <div class="testimonial-likes">👍 91 &nbsp;•&nbsp; 7 respostas</div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-avatar" style="background:#0ea5e9;">L</div>
+      <div class="testimonial-body">
+        <div class="testimonial-name">Lurdes Bila</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">Funcionou mesmo. Simples e prático 🙌</div>
+        <div class="testimonial-likes">👍 38 &nbsp;•&nbsp; 2 respostas</div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-avatar" style="background:#16a34a;">C</div>
+      <div class="testimonial-body">
+        <div class="testimonial-name">Celina Nhampule</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">Já indiquei pra duas amigas. O meu relacionamento mudou completamente depois disto 💚</div>
+        <div class="testimonial-likes">👍 62 &nbsp;•&nbsp; 5 respostas</div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-avatar" style="background:#f59e0b;">G</div>
+      <div class="testimonial-body">
+        <div class="testimonial-name">Graça Mondlane</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">Achei que era mais um curso qualquer... mas surpresa! Resultado em 4 dias 😳❤️</div>
+        <div class="testimonial-likes">👍 55 &nbsp;•&nbsp; 4 respostas</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Garantia -->
+  <div class="guarantee">
+    <div class="guarantee-icon">🛡️</div>
+    <h4>Garantia Total de 7 Dias</h4>
+    <p>Se aplicares o método e não vires resultados em 7 dias, devolvemos o teu dinheiro. Sem perguntas, sem burocracia.</p>
+  </div>
+
+  <!-- Barra de retenção -->
+  <div id="retention-bar">
+    🎁 <span>Continua a assistir</span> — os bónus exclusivos são revelados no final!
+  </div>
+
+  <footer>
+    <a href="#">Termos de Uso</a> &nbsp;|&nbsp;
+    <a href="#">Política de Privacidade</a> &nbsp;|&nbsp;
+    <a href="#">Contato</a><br/>
+    © 2026 Método Chama Oculta. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    // ── Evento de checkout ──
+    document.getElementById('ctaBtn').addEventListener('click', () => {
+      fbq('track', 'InitiateCheckout');
+    });
+
+    // ── Contador viewers ──
+    let viewers = 1240;
+    const viewerEl = document.getElementById('viewerCount');
+    setInterval(() => {
+      viewers += Math.floor(Math.random() * 7) - 3;
+      viewers  = Math.max(1100, Math.min(1500, viewers));
+      viewerEl.textContent = viewers.toLocaleString('pt-BR');
+    }, 4000);
+  </script>
+</body>
+</html>
