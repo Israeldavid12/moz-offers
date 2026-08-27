@@ -4,7 +4,7 @@
         var o, i, a, c, l, d, r = t.head || t.getElementsByTagName("head")[0];
         if (!r)
             return;
-        !0 && (c = "https://cdn.converteai.net/c0d89eb4-af87-4f75-ba74-aae866df9d51/6a4b865617012f5f0bee29e7/main.m3u8",
+        !0 && (c = "https://cdn.converteai.net/12a7ceee-e597-47e5-84a3-e83381170bc5/6a90664f5cbdc42262b36b7b/main.m3u8",
         t.querySelector('link[rel="preload"][href="' + c + '"]') || (o = t.createElement("link"),
         o.rel = "preload",
         o.href = c,
@@ -27,12 +27,12 @@
 }
 )(document, window, performance),
 function() {
-    var t = document.getElementById("vid-6a4b877012467ad3e499c7a4")
+    var t = document.getElementById("vid-6a9066d7c677387e030e104e")
       , e = {
-        elementId: "vid-6a4b877012467ad3e499c7a4",
+        elementId: "vid-6a9066d7c677387e030e104e",
         preloads: {},
         config: {
-            id: "6a4b877012467ad3e499c7a4",
+            id: "6a9066d7c677387e030e104e",
             step: 5,
             config: {
                 callActions: {
@@ -42,7 +42,7 @@ function() {
                         active: !0,
                         as_html: !1,
                         name: null,
-                        content: "QUERO CURAR MINHA DISFUNCAO",
+                        content: "QUERO CURAR MINHA DISFUNCAOOOOO",
                         id: "6a4b8d48fbd7d45f814d5de0_d9658fff",
                         persist_on_video_end: !0,
                         show_to_returning_viewer: !1,
@@ -113,7 +113,7 @@ function() {
                     active: !1,
                     items: []
                 },
-                id: "6a4b877012467ad3e499c7a4",
+                id: "6a9066d7c677387e030e104e",
                 immersiveMode: {
                     active: !1,
                     disableScrolling: !1,
@@ -128,7 +128,7 @@ function() {
                     items: []
                 },
                 name: "Sal_Nigeriano.mp4",
-                oid: "c0d89eb4-af87-4f75-ba74-aae866df9d51",
+                oid: "12a7ceee-e597-47e5-84a3-e83381170bc5",
                 pitchTime: 480,
                 pixels: {
                     active: !1,
@@ -143,7 +143,7 @@ function() {
                 },
                 playerInit: {
                     aspectRatio: 100,
-                    thumbnailKey: "c0d89eb4-af87-4f75-ba74-aae866df9d51/players/6a4b877012467ad3e499c7a4/thumbnail.jpg",
+                    thumbnailKey: "12a7ceee-e597-47e5-84a3-e83381170bc5/players/6a9066d7c677387e030e104e/thumbnail.jpg",
                     verticalVideo: !1,
                     customId: null
                 },
@@ -163,7 +163,7 @@ function() {
                 smartAutoPlay: {
                     active: !0,
                     items: [{
-                        id: "smart_autoplay_6a4b877012467ad3e499c7a4_1_7f7cfccd",
+                        id: "smart_autoplay_6a9066d7c677387e030e104e_1_7f7cfccd",
                         autoUnmute: !0,
                         name: "Smart Autoplay",
                         number: 1,
@@ -278,12 +278,12 @@ function() {
                     active: !1
                 },
                 video: {
-                    cover: "https://images.converteai.net/c0d89eb4-af87-4f75-ba74-aae866df9d51/players/6a4b877012467ad3e499c7a4/cover.jpg",
+                    cover: "https://images.converteai.net/12a7ceee-e597-47e5-84a3-e83381170bc5/players/6a9066d7c677387e030e104e/cover.jpg",
                     startQuality: "auto",
-                    id: "6a4b865617012f5f0bee29e7",
+                    id: "6a90664f5cbdc42262b36b7b",
                     aspectRatio: 1,
                     height: 720,
-                    poster: "https://cdn.converteai.net/c0d89eb4-af87-4f75-ba74-aae866df9d51/6a4b865617012f5f0bee29e7/poster.jpg",
+                    poster: "https://cdn.converteai.net/12a7ceee-e597-47e5-84a3-e83381170bc5/6a90664f5cbdc42262b36b7b/poster.jpg",
                     width: 720,
                     drm: !1
                 }
