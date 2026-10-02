@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação Especial</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://drop-payments.vercel.app/track-fb-cookies.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @keyframes pulse-red {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(1.2);
+            }
+        }
+        .animate-pulse-fast {
+            animation: pulse-red 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-[#050B14] text-white min-h-screen flex flex-col justify-between antialiased selection:bg-red-600 selection:text-white">
+
+    <main class="w-full max-w-4xl mx-auto px-4 py-8 md:py-12 flex-grow flex flex-col items-center">
+        
+        <!-- Warning Top Banner -->
+        <p class="text-[#EAB308] text-xs sm:text-sm font-bold tracking-wide uppercase text-center mb-3 sm:mb-4">
+            NÃO SAIA: ESTA PÁGINA PODE NÃO APARECER NOVAMENTE
+        </p>
+
+        <!-- Main Headline -->
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center leading-tight sm:leading-snug md:leading-snug max-w-3xl mb-6 tracking-tight">
+            NÃO TENTE <span class="text-[#EF4444] font-black">EMAGRECER</span>. 
+            <span class="bg-[#FACC15] text-black px-2 py-0.5 rounded font-black inline-block my-1 sm:my-0 shadow-md">DESBLOQUEIE ISSO</span> 
+            E O SEU CORPO VAI <span class="text-[#EF4444] font-black">SECAR ENQUANTO DORME</span>.
+        </h1>
+
+        <!-- Live Status Pill -->
+        <div class="inline-flex items-center gap-2.5 bg-slate-900/80 border border-slate-700/60 rounded-full px-4 py-1.5 shadow-lg backdrop-blur-sm mb-8">
+            <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
+            </span>
+            <span class="text-xs sm:text-sm font-medium text-slate-200">
+                Apresentação disponível agora
+            </span>
+        </div>
+
+        <!-- Video Player Section -->
+        <div class="w-full max-w-3xl rounded-xl overflow-hidden shadow-2xl border border-slate-800/80 bg-black">
+            <!-- SmartPlayer Vturb Embed -->
+            <vturb-smartplayer id="vid-6abfee32092df0585ba3ba92" style="display: block; margin: 0 auto; width: 100%;">
+                <div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 56.25% 0 0; z-index: 0; background-color: black;"></div>
+            </vturb-smartplayer>
+            <script type="text/javascript"> 
+                var s=document.createElement("script"); 
+                s.src="https://scripts.converteai.net/8bd98d29-7ae4-47cd-9a91-62a7a56edaf9/players/6abfee32092df0585ba3ba92/v4/player.js", 
+                s.async=!0,
+                document.head.appendChild(s); 
+            </script>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-6 text-center border-t border-slate-900/50 mt-12">
+        <p class="text-xs sm:text-sm text-slate-500 font-normal">
+            © 2026 Trusty Buy. Todos os direitos reservados.
+        </p>
+    </footer>
+
+</body>
+</html>
